@@ -1,0 +1,68 @@
+import os
+import streamlit as st
+import pandas as pd
+import requests
+from clickhouse_driver import Client
+
+CLICKHOUSE_HOST = os.getenv('CLICKHOUSE_HOST', 'clickhouse')
+API_URL = os.getenv('API_URL', 'http://api:8000')
+
+st.set_page_config(
+    page_title="RetailFlow Dashboard",
+    page_icon="🛒",
+    layout="wide",
+)
+
+st.markdown(
+    """
+    <style>
+    .block-container { padding-top: 1.5rem; }
+    h1 { color: #0f766e; letter-spacing: -0.02em; }
+    [data-testid="stMetricValue"] { color: #134e4a; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.title("RetailFlow — Live Orders & Predictions")
+st.caption("Real-time retail order monitoring with on-demand ML category and amount forecasts.")
+
+try:
+    client = Client(host=CLICKHOUSE_HOST, user='default', password='')
+    df = pd.DataFrame(
+        client.execute(
+            'SELECT order_id, user_id, amount, product_category, timestamp FROM orders'
+        ),
+        columns=['order_id', 'user_id', 'amount', 'product_category', 'timestamp']
+    )
+except Exception as e:
+    st.error(f"Cannot connect to ClickHouse: {e}")
+    st.stop()
+
+if df.empty:
+    st.warning("No data yet. Run producer and consumer.")
+else:
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Total Orders", len(df))
+    col2.metric("Unique Users", df['user_id'].nunique())
+    col3.metric("Avg Amount", f"{df['amount'].mean():.2f}")
+
+    st.subheader("Orders by Category")
+    st.bar_chart(df['product_category'].value_counts())
+
+    st.subheader("Latest Orders")
+    st.dataframe(df.tail(10))
+
+    st.subheader("Predict for a User")
+    user_id = st.number_input("User ID", min_value=1, value=13, step=1)
+    amount = st.number_input("Order amount (optional)", value=0.0, step=10.0)
+    if st.button("Predict"):
+        try:
+            resp = requests.get(f"{API_URL}/predict/{user_id}?amount={amount}")
+            data = resp.json()
+            st.success(f"Predicted category: **{data['predicted_category']}**")
+            st.success(f"Predicted amount: **{data['predicted_amount']:.2f}**")
+            if data.get('from_cache'):
+                st.info("Result from cache")
+        except Exception as e:
+            st.error(f"API error: {e}")
