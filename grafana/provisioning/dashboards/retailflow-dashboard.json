@@ -1,0 +1,115 @@
+{
+  "title": "RetailFlow Analytics Dashboard",
+  "panels": [
+    {
+      "title": "Total Revenue",
+      "type": "stat",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT SUM(amount) AS revenue FROM orders",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 8, "h": 4 }
+    },
+    {
+      "title": "A/B Test: Average Check by Group",
+      "type": "barchart",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT experiment_group, AVG(amount) AS avg_check FROM orders GROUP BY experiment_group ORDER BY avg_check DESC",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 8, "y": 0, "w": 16, "h": 8 }
+    },
+    {
+      "title": "Revenue by Channel",
+      "type": "piechart",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT channel, SUM(amount) AS revenue FROM orders GROUP BY channel ORDER BY revenue DESC",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "displayLabels": ["name", "percent"],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": ["sum"],
+          "fields": "",
+          "values": true
+        }
+      },
+      "gridPos": { "x": 0, "y": 8, "w": 8, "h": 8 }
+    },
+    {
+      "title": "Top Product Categories",
+      "type": "barchart",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT product_category, COUNT(*) AS orders_count FROM orders GROUP BY product_category ORDER BY orders_count DESC LIMIT 10",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 8, "y": 16, "w": 16, "h": 8 }
+    },
+    {
+      "title": "Promo vs No Promo",
+      "type": "stat",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT promo, COUNT(*) AS count FROM orders GROUP BY promo ORDER BY count DESC",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 24, "w": 12, "h": 4 }
+    },
+    {
+      "title": "Weekend vs Weekday Revenue",
+      "type": "stat",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "clickhouse"
+          },
+          "rawSql": "SELECT is_weekend, SUM(amount) AS revenue FROM orders GROUP BY is_weekend",
+          "format": "table",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 12, "y": 24, "w": 12, "h": 4 }
+    }
+  ],
+  "schemaVersion": 27
+}
