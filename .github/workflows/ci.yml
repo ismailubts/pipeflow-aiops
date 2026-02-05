@@ -1,0 +1,38 @@
+﻿name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      - name: Start all services
+        run: |
+          docker compose up -d --build
+          sleep 45
+      - name: Check if ClickHouse is ready
+        run: |
+          docker compose exec clickhouse clickhouse-client --query "SELECT 1" || exit 1
+      - name: Check if Kafka is ready
+        run: |
+          docker compose exec kafka kafka-topics --bootstrap-server localhost:9092 --list || exit 1
+      - name: Run tests
+        run: |
+          pytest tests/ -v
+      - name: Stop services
+        if: always()
+        run: |
+          docker compose down -v
