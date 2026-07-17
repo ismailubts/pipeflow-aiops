@@ -1,4 +1,4 @@
-name: retailflow-aiops
+name: pipeflow-aiops
 
 services:
   zookeeper:

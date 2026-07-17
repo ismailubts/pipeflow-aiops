@@ -87,7 +87,7 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down API...")
 
 app = FastAPI(
-    title="RetailFlow API",
+    title="PipeFlow API",
     description="Streaming retail order analytics and ML predictions",
     version="3.1.0",
     lifespan=lifespan,

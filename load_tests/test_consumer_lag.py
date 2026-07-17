@@ -20,7 +20,7 @@ signal.signal(signal.SIGTERM, signal_handler)
 def test_consumer_lag(stop_time=60, recovery_time=120, bootstrap_servers='localhost:9092'):
     logger.info(f"Starting consumer lag test: stop for {stop_time}s, recover for {recovery_time}s")
     logger.info("Stopping consumer container...")
-    if not stop_container('retailflow-aiops-consumer-1'):
+    if not stop_container('pipeflow-aiops-consumer-1'):
         logger.error("Failed to stop consumer")
         return
 
@@ -28,7 +28,7 @@ def test_consumer_lag(stop_time=60, recovery_time=120, bootstrap_servers='localh
     time.sleep(stop_time)
 
     logger.info("Starting consumer container...")
-    if not start_container('retailflow-aiops-consumer-1'):
+    if not start_container('pipeflow-aiops-consumer-1'):
         logger.error("Failed to start consumer")
         return
 

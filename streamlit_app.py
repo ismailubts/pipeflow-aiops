@@ -8,7 +8,7 @@ CLICKHOUSE_HOST = os.getenv('CLICKHOUSE_HOST', 'clickhouse')
 API_URL = os.getenv('API_URL', 'http://api:8000')
 
 st.set_page_config(
-    page_title="RetailFlow Dashboard",
+    page_title="PipeFlow Dashboard",
     page_icon="🛒",
     layout="wide",
 )
@@ -24,7 +24,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("RetailFlow — Live Orders & Predictions")
+st.title("PipeFlow — Live Orders & Predictions")
 st.caption("Real-time retail order monitoring with on-demand ML category and amount forecasts.")
 
 try:

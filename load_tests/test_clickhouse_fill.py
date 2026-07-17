@@ -23,7 +23,7 @@ def test_disk_fill(target_gb=5, max_seconds=3600):
     logger.info(f"Starting ClickHouse disk fill test, target {target_gb} GB or max {max_seconds}s")
     start_time = time.time()
     client = get_docker_client()
-    container = client.containers.get('retailflow-aiops-producer-1')
+    container = client.containers.get('pipeflow-aiops-producer-1')
     logger.info("Starting producer in fast mode (sleep 0.01s)")
     cmd = [
         'docker-compose', 'run', '-d',
