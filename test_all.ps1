@@ -1,4 +1,4 @@
-Write-Host "=== RetailFlow-AIOps Health Check ===" -ForegroundColor Cyan
+Write-Host "=== pipeflow-aiops Health Check ===" -ForegroundColor Cyan
 Write-Host ""
 
 try {

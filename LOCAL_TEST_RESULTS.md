@@ -1,7 +1,7 @@
 # Local Test Results
 
 **Date:** 2026-07-17
-**Project:** RetailFlow-AIOps v3.1.0
+**Project:** pipeflow-aiops v3.1.0
 **Environment:** Docker Compose (local)
 
 ## Tested Services

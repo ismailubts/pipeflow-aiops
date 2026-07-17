@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=== RetailFlow-AIOps Health Check ==="
+echo "=== pipeflow-aiops Health Check ==="
 echo ""
 echo -n "API Health: "
 curl -s http://localhost:8000/health | jq -r '.status' || echo "FAILED"

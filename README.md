@@ -1,7 +1,7 @@
-# RetailFlow-AIOps
+# pipeflow-aiops
 
-[![CI/CD](https://github.com/Aismail/RetailFlow-AIOps/actions/workflows/ci.yml/badge.svg)](https://github.com/Aismail/RetailFlow-AIOps/actions)
-[![GitHub release](https://img.shields.io/github/release/Aismail/RetailFlow-AIOps.svg)](https://github.com/Aismail/RetailFlow-AIOps/releases)
+[![CI/CD](https://github.com/ismailubts/pipeflow-aiops/actions/workflows/ci.yml/badge.svg)](https://github.com/ismailubts/pipeflow-aiops/actions)
+[![GitHub release](https://img.shields.io/github/release/ismailubts/pipeflow-aiops.svg)](https://github.com/ismailubts/pipeflow-aiops/releases)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
@@ -45,8 +45,8 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Aismail/RetailFlow-AIOps.git
-   cd RetailFlow-AIOps
+   git clone https://github.com/ismailubts/pipeflow-aiops.git
+   cd pipeflow-aiops
    ```
 
 2. **Build and run all services**:
@@ -131,7 +131,7 @@ GitHub Actions is configured to:
 ## Project Structure
 
 ```
-RetailFlow-AIOps/
+pipeflow-aiops/
 ├── .github/workflows/ci.yml   # CI/CD pipeline
 ├── monitoring/
 │   └── prometheus.yml         # Prometheus config
@@ -164,7 +164,7 @@ RetailFlow-AIOps/
 
 ## Releases
 
-Check the [Releases](https://github.com/Aismail/RetailFlow-AIOps/releases) page for versioned artifacts, changelogs, and stable builds.
+Check the [Releases](https://github.com/ismailubts/pipeflow-aiops/releases) page for versioned artifacts, changelogs, and stable builds.
 
 - **Latest stable version**: v3.1.0
 
@@ -184,6 +184,6 @@ PRs and issues are welcome! Feel free to improve the project.
 
 ## Contact
 
-- **Author**: Aismail
+- **Author**: ismailubts
 - **Email**: aismail@7kingscode.com
-- **GitHub**: [@Aismail](https://github.com/Aismail)
+- **GitHub**: [@ismailubts](https://github.com/ismailubts)
