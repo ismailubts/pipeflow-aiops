@@ -3,7 +3,7 @@
 [![CI/CD](https://github.com/ismailubts/pipeflow-aiops/actions/workflows/ci.yml/badge.svg)](https://github.com/ismailubts/pipeflow-aiops/actions)
 [![GitHub release](https://img.shields.io/github/release/ismailubts/pipeflow-aiops.svg)](https://github.com/ismailubts/pipeflow-aiops/releases)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+![License](https://img.shields.io/badge/license-Proprietary-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-compose-blue.svg)
 
 **Streaming retail analytics pipeline** — Kafka, ClickHouse, FastAPI, Streamlit, Prometheus, Grafana, and CI/CD.
@@ -172,7 +172,7 @@ Check the [Releases](https://github.com/ismailubts/pipeflow-aiops/releases) page
 
 ## License
 
-**MIT** — free for personal and commercial use. See [LICENSE](LICENSE).
+**Proprietary** — Copyright (c) Abdul Ismail. See [LICENSE](LICENSE).
 
 ---
 
@@ -184,6 +184,5 @@ PRs and issues are welcome! Feel free to improve the project.
 
 ## Contact
 
-- **Author**: ismailubts
-- **Email**: aismail@7kingscode.com
-- **GitHub**: [@ismailubts](https://github.com/ismailubts)
+- **Author**: Abdul Ismail
+- **Repository**: https://github.com/ismailubts/pipeflow-aiops
